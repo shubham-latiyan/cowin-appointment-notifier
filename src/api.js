@@ -7,6 +7,9 @@ const getAppointements = () => {
     const url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${config.pinCode}&date=${config.todayDate}`;
     return new Promise((resolve, reject) => {
       tr.request(url, function (err, res, body) {
+        console.log('🚀 ~ body', body);
+        console.log('🚀 ~ res', res);
+        console.log('🚀 ~ err', err);
         if (!err && res.statusCode == 200) {
           body = JSON.parse(body);
           resolve(body);
