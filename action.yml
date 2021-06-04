@@ -1,5 +1,0 @@
-name: 'cowin_notifier'
-description: 'Cowin appointment availability notifier'
-runs:
-  using: 'node12'
-  main: 'dist/index.js'
