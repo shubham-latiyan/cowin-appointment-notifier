@@ -30684,7 +30684,7 @@ FormData.prototype.getBoundary = function() {
 };
 
 FormData.prototype.getBuffer = function() {
-  var dataBuffer = new Buffer.alloc( 0 );
+  var dataBuffer = Buffer.from.alloc( 0 );
   var boundary = this.getBoundary();
 
   // Create the form content. Add Line breaks to the end of data.
@@ -31379,12 +31379,12 @@ IncomingForm.prototype._initMultipart = function(boundary) {
         can be divided vy 3.
         */
         var offset = parseInt(part.transferBuffer.length / 4, 10) * 4;
-        part.emit('data', new Buffer(part.transferBuffer.substring(0, offset), 'base64'));
+        part.emit('data', Buffer.from(part.transferBuffer.substring(0, offset), 'base64'));
         part.transferBuffer = part.transferBuffer.substring(offset);
       };
 
       parser.onPartEnd = function() {
-        part.emit('data', new Buffer(part.transferBuffer, 'base64'));
+        part.emit('data', Buffer.from(part.transferBuffer, 'base64'));
         part.emit('end');
       };
       break;
@@ -31645,10 +31645,10 @@ MultipartParser.stateToString = function(stateNumber) {
 };
 
 MultipartParser.prototype.initWithBoundary = function(str) {
-  this.boundary = new Buffer(str.length+4);
+  this.boundary = Buffer.from(str.length+4);
   this.boundary.write('\r\n--', 0);
   this.boundary.write(str, 4);
-  this.lookbehind = new Buffer(this.boundary.length+8);
+  this.lookbehind = Buffer.from(this.boundary.length+8);
   this.state = S.START;
 
   this.boundaryChars = {};
@@ -33851,10 +33851,10 @@ module.exports = function (size) {
     try {
       return Buffer.allocUnsafe(size)
     } catch (e) {
-      return new Buffer(size)
+      return Buffer.from(size)
     }
   }
-  return new Buffer(size)
+  return Buffer.from(size)
 }
 
 
@@ -34181,7 +34181,7 @@ var /*TYPE = {
       552: 'Requested file action aborted / Exceeded storage allocation (for current directory or dataset)',
       553: 'Requested action not taken / File name not allowed'
     },*/
-    bytesNOOP = new Buffer('NOOP\r\n');
+    bytesNOOP = Buffer.from('NOOP\r\n');
 
 var FTP = module.exports = function() {
   if (!(this instanceof FTP))
@@ -35735,7 +35735,7 @@ Readable.prototype.push = function(chunk, encoding) {
   if (util.isString(chunk) && !state.objectMode) {
     encoding = encoding || state.defaultEncoding;
     if (encoding !== state.encoding) {
-      chunk = new Buffer(chunk, encoding);
+      chunk = Buffer.from(chunk, encoding);
       encoding = '';
     }
   }
@@ -36472,7 +36472,7 @@ function fromList(n, state) {
       if (stringMode)
         ret = '';
       else
-        ret = new Buffer(n);
+        ret = Buffer.from(n);
 
       var c = 0;
       for (var i = 0, l = list.length; i < l && c < n; i++) {
@@ -36994,7 +36994,7 @@ function decodeChunk(state, chunk, encoding) {
   if (!state.objectMode &&
       state.decodeStrings !== false &&
       util.isString(chunk)) {
-    chunk = new Buffer(chunk, encoding);
+    chunk = Buffer.from(chunk, encoding);
   }
   return chunk;
 }
@@ -37326,7 +37326,7 @@ var StringDecoder = exports.s = function(encoding) {
 
   // Enough space to store all bytes of a single character. UTF-8 needs 4
   // bytes, but CESU-8 may require up to 6 (3 bytes per surrogate).
-  this.charBuffer = new Buffer(6);
+  this.charBuffer = Buffer.from(6);
   // Number of bytes received for the current incomplete multi-byte character.
   this.charReceived = 0;
   // Number of bytes expected for the current incomplete multi-byte character.
@@ -37340,7 +37340,7 @@ var StringDecoder = exports.s = function(encoding) {
 // returned when calling write again with the remaining bytes.
 //
 // Note: Converting a Buffer containing an orphan surrogate to a String
-// currently works, but converting a String to a Buffer (via `new Buffer`, or
+// currently works, but converting a String to a Buffer (via `Buffer.from`, or
 // Buffer#write) will replace incomplete surrogates with the unicode
 // replacement character. See https://codereview.chromium.org/121173009/ .
 StringDecoder.prototype.write = function(buffer) {
@@ -42465,7 +42465,7 @@ module.exports = function (iconv) {
     // Node authors rewrote Buffer internals to make it compatible with
     // Uint8Array and we cannot patch key functions since then.
     // Note: this does use older Buffer API on a purpose
-    iconv.supportsNodeEncodingsExtension = !(Buffer.from || new Buffer(0) instanceof Uint8Array);
+    iconv.supportsNodeEncodingsExtension = !(Buffer.from || Buffer.from(0) instanceof Uint8Array);
 
     iconv.extendNodeEncodings = function extendNodeEncodings() {
         if (original) return;
@@ -43028,7 +43028,7 @@ ip.toBuffer = function(ip, buff, offset) {
   var result;
 
   if (this.isV4Format(ip)) {
-    result = buff || new Buffer(offset + 4);
+    result = buff || Buffer.from(offset + 4);
     ip.split(/\./g).map(function(byte) {
       result[offset++] = parseInt(byte, 10) & 0xff;
     });
@@ -43063,7 +43063,7 @@ ip.toBuffer = function(ip, buff, offset) {
       sections.splice.apply(sections, argv);
     }
 
-    result = buff || new Buffer(offset + 16);
+    result = buff || Buffer.from(offset + 16);
     for (i = 0; i < sections.length; i++) {
       var word = parseInt(sections[i], 16);
       result[offset++] = (word >> 8) & 0xff;
@@ -43128,7 +43128,7 @@ ip.fromPrefixLen = function(prefixlen, family) {
   if (family === 'ipv6') {
     len = 16;
   }
-  var buff = new Buffer(len);
+  var buff = Buffer.from(len);
 
   for (var i = 0, n = buff.length; i < n; ++i) {
     var bits = 8;
@@ -43147,7 +43147,7 @@ ip.mask = function(addr, mask) {
   addr = ip.toBuffer(addr);
   mask = ip.toBuffer(mask);
 
-  var result = new Buffer(Math.max(addr.length, mask.length));
+  var result = Buffer.from(Math.max(addr.length, mask.length));
 
   var i = 0;
   // Same protocol - do bitwise and
