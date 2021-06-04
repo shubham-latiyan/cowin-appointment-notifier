@@ -12,6 +12,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Install Tor
+        run: |
+          sudo apt-get -y install tor
+          sudo sh -c "echo 'ExitNodes 216.10.247.146' >> /etc/tor/torrc"
+          sudo /etc/init.d/tor restart
+
       - name: Setup node
         uses: actions/setup-node@v1
         with:

@@ -1,11 +1,20 @@
-const axios = require("axios");
+const tr = require("tor-request");
 const config = require("./config");
 
 const getAppointements = () => {
   try {
     console.log("fetching available slots for cowin");
     const url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${config.pinCode}&date=${config.todayDate}`;
-    return axios.get(url);
+    return new Promise((resolve, reject) => {
+      tr.request(url, function (err, res, body) {
+        if (!err && res.statusCode == 200) {
+          body = JSON.parse(body);
+          resolve(body);
+        } else {
+          reject(err);
+        }
+      });
+    });
   } catch (error) {
     console.error(error);
   }
