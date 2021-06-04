@@ -3,7 +3,7 @@ description: 'Cowin appointment availability notifier'
 inputs: 
   GITHUB_TOKEN: 
     description: 'Github Token'
-    required: true
+    required: false
 
 runs:
   using: 'node12'
