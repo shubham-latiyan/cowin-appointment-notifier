@@ -17,3 +17,7 @@ function generateTemplate(results) {
   });
   email.sendEmail(String(results.length), text);
 }
+
+process.on('unhandledRejection', error => {
+  console.log('unhandledRejection', error.message);
+});
