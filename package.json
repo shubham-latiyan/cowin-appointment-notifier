@@ -4,22 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node ./dist/index.js",
+    "start": "NODE_ENV=production node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "ncc build src/action.js -o dist"
+    "build": "ncc build src/index.js -o dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shubham-latiyan/cowin-appointment-notifier.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Shubham Latiyan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/shubham-latiyan/cowin-appointment-notifier/issues"
   },
   "homepage": "https://github.com/shubham-latiyan/cowin-appointment-notifier#readme",
-  "dependencies": {
+  "devDependencies": {
     "@vercel/ncc": "^0.28.6"
   }
 }
