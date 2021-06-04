@@ -1,1 +1,1 @@
-# cowin-appointment-notifier
+# cowin-appointment-notifier.
