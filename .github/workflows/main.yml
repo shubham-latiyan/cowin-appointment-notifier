@@ -1,10 +1,13 @@
 name: Cowin Notifier
 on: [push]
 # schedule:
-    # - cron: "*/5 * * * *"
+# - cron: "*/5 * * * *"
 jobs:
   cowin_notifier:
     runs-on: ubuntu-latest
+    env:
+      MJ_APIKEY_PUBLIC: ${{ secrets.MJ_APIKEY_PUBLIC }}
+      MJ_APIKEY_PRIVATE: ${{ secrets.MJ_APIKEY_PRIVATE }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -13,10 +16,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12"
-      
-      - name: Install dependencies
-        run: npm install
 
       - name: Run the script
         run: npm start
-         
