@@ -1,10 +1,5 @@
 name: 'cowin_notifier'
 description: 'Cowin appointment availability notifier'
-inputs: 
-  GITHUB_TOKEN: 
-    description: 'Github Token'
-    required: false
-
 runs:
   using: 'node12'
   main: 'dist/index.js'
