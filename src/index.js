@@ -19,5 +19,5 @@ function generateTemplate(results) {
 }
 
 process.on('unhandledRejection', error => {
-  console.log('unhandledRejection', error.message);
+  console.log('unhandledRejection', error);
 });
