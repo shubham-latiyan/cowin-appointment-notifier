@@ -1,8 +1,7 @@
 name: Cowin Notifier
-on:
-  schedule:
-    - cron: "*/5 * * * *"
-
+on: [push]
+  # schedule:
+  #   - cron: "*/5 * * * *"
 jobs:
   cowin_notifier:
     runs-on: ubuntu-latest
