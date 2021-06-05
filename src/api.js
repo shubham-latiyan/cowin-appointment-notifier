@@ -9,7 +9,6 @@ const getAppointements = () => {
       tr.request(url, function (err, res, body) {
         console.log('🚀 ~ body', body);
         console.log('🚀 ~ err', err);
-        console.log('🚀 ~ res', res);
         if (!err && res.statusCode == 200) {
           body = JSON.parse(body);
           resolve(body);
