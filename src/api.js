@@ -5,6 +5,7 @@ const getAppointements = async () => {
   try {
     console.log("fetching available slots for cowin");
     const url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${config.pinCode}&date=${config.todayDate}`;
+    console.log('🚀 ~ getAppointements ~ url', url);
     const response = await fetch(url);
     const data = await response.json();
     return { data };
