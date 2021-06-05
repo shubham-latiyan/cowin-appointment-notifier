@@ -15,7 +15,7 @@ jobs:
       - name: Install Tor
         run: |
           sudo apt-get -y install tor
-          sudo sh -c "echo 'ExitNodes 139.99.172.11' >> /etc/tor/torrc"
+          sudo sh -c "echo 'ExitNodes 49.50.107.221' >> /etc/tor/torrc"
           sudo /etc/init.d/tor restart
 
       - name: Setup node
