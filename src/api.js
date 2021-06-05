@@ -8,15 +8,16 @@ const getAppointements = async () => {
     console.log('🚀 ~ getAppointements ~ url', url);
     const response = await fetch(url);
     const data = await response.json();
-    return { data };
+    return data;
   } catch (error) {
     console.error("FETCH ERROR", error);
   }
 };
 
 const getAvailableSlots = async () => {
-  const { data } = await getAppointements();
+  const data = await getAppointements();
   const result = data.centers.filter((e) => e.name === config.centerName);
+  console.log('🚀 ~ getAvailableSlots ~ result', result);
   if (!result && result.length === 0) {
     return;
   }
