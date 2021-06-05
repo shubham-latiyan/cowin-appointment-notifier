@@ -64989,6 +64989,7 @@ const getAppointements = async () => {
 const getAvailableSlots = async () => {
   const data = await getAppointements();
   const result = data.centers.filter((e) => e.name === config.centerName);
+  console.log('🚀 ~ getAvailableSlots ~ result', result);
   if (!result && result.length === 0) {
     return;
   }
