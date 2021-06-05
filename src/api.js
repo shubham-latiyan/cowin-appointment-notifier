@@ -8,18 +8,6 @@ const getAppointements = async () => {
     const response = await fetch(url);
     const data = await response.json();
     return { data };
-    // return new Promise((resolve, reject) => {
-    //   tr.request(url, function (err, res, body) {
-    //     console.log('🚀 ~ body', body);
-    //     console.log('🚀 ~ err', err);
-    //     if (!err && res.statusCode == 200) {
-    //       body = JSON.parse(body);
-    //       resolve(body);
-    //     } else {
-    //       reject(err);
-    //     }
-    //   });
-    // });
   } catch (error) {
     console.error("FETCH ERROR", error);
   }
