@@ -1,8 +1,9 @@
 const api = require("./api");
-const email = require('./email');
+// const email = require('./email');
 
 (async function run() {
   const result = await api.getAvailableSlots();
+  console.log('🚀 ~ run ~ result', result[0]);
   generateTemplate(result);
 })();
 
@@ -15,7 +16,7 @@ function generateTemplate(results) {
       el.vaccine
     }  |  slots: ${el.slots.join(",  ")}  <br>`;
   });
-  email.sendEmail(String(results.length), text);
+  // email.sendEmail(String(results.length), text);
 }
 
 process.on('unhandledRejection', error => {

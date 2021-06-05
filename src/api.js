@@ -1,24 +1,27 @@
-const tr = require("tor-request");
+const fetch = require("node-fetch");
 const config = require("./config");
 
-const getAppointements = () => {
+const getAppointements = async () => {
   try {
     console.log("fetching available slots for cowin");
     const url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${config.pinCode}&date=${config.todayDate}`;
-    return new Promise((resolve, reject) => {
-      tr.request(url, function (err, res, body) {
-        console.log('🚀 ~ body', body);
-        console.log('🚀 ~ err', err);
-        if (!err && res.statusCode == 200) {
-          body = JSON.parse(body);
-          resolve(body);
-        } else {
-          reject(err);
-        }
-      });
-    });
+    const response = await fetch(url);
+    const data = await response.json();
+    return { data };
+    // return new Promise((resolve, reject) => {
+    //   tr.request(url, function (err, res, body) {
+    //     console.log('🚀 ~ body', body);
+    //     console.log('🚀 ~ err', err);
+    //     if (!err && res.statusCode == 200) {
+    //       body = JSON.parse(body);
+    //       resolve(body);
+    //     } else {
+    //       reject(err);
+    //     }
+    //   });
+    // });
   } catch (error) {
-    console.error(error);
+    console.error("FETCH ERROR", error);
   }
 };
 

@@ -12,11 +12,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install Tor
-        run: |
-          sudo apt-get -y install tor
-          sudo sh -c "echo 'ExitNodes 49.50.107.221' >> /etc/tor/torrc"
-          sudo /etc/init.d/tor restart
+      # - name: Install Tor
+      #   run: |
+      #     sudo apt-get -y install tor
+      #     sudo sh -c "echo 'ExitNodes 49.50.107.221' >> /etc/tor/torrc"
+      #     sudo /etc/init.d/tor restart
 
       - name: Setup node
         uses: actions/setup-node@v1

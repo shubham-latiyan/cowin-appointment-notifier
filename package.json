@@ -24,7 +24,7 @@
     "@vercel/ncc": "^0.28.6"
   },
   "dependencies": {
-    "node-mailjet": "^3.3.4",
-    "tor-request": "^3.1.0"
+    "node-fetch": "^2.6.1",
+    "node-mailjet": "^3.3.4"
   }
 }
